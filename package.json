@@ -1,0 +1,12 @@
+{
+  "name": "module-redis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "async-redis": "^1.1.7"
+  },
+  "author": "Carlos Morales",
+  "license": "MIT"
+}
