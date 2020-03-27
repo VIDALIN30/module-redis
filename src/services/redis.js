@@ -21,7 +21,7 @@ module.exports = function(URL_CONECTION) {
   
   service.getJson = async function (clave) {
     let resultado = await redis.get(clave)
-    return JSON.parse(resultado || "[]")
+    return JSON.parse(resultado)
   }
 
   service.setObject = function (clave, value) {
