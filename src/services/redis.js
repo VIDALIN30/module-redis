@@ -45,10 +45,14 @@ module.exports = function(URL_CONECTION) {
     redisDeletePattern({ redis: redis, pattern: pattern });
   }
 
+  service.deleteByKey = async function (key) {
+    redis.delete(key)
+  }
+
   // Clear All Keys
   service.clearAll = async function () {
     redis.flushall('ASYNC');
   }
-  
+
   return service
 }
