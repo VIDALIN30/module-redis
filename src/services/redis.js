@@ -42,8 +42,13 @@ module.exports = function(URL_CONECTION) {
   }
 
   service.deleteByPattern = async function (pattern) {
-    redisDeletePattern({ redis: redis, pattern: pattern }, function handleError (err) { });
+    redisDeletePattern({ redis: redis, pattern: pattern });
   }
 
+  // Clear All Keys
+  service.clearAll = async function () {
+    redis.flushall('ASYNC');
+  }
+  
   return service
 }
