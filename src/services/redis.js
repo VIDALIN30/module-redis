@@ -2,12 +2,20 @@
 
 module.exports = function(URL_CONECTION) {
   const Redis = require("async-redis")
+  var redisDeletePattern = require('redis-delete-pattern');
   const redis = Redis.createClient(URL_CONECTION)
   
   let service = {}
   
   service.set = function (clave, value) {
     return redis.set(clave, value)
+  }
+
+  service.setWithExpire = function (clave, value, expire) {
+    if(expire)
+      return redis.set(clave,value,'EX', expire)
+    else
+      return redis.set(clave,value)
   }
   
   service.get = async function (clave) {
@@ -31,6 +39,10 @@ module.exports = function(URL_CONECTION) {
   service.getObject = async function (clave) {
     let resultado = await redis.hgetall(clave)
     return resultado
+  }
+
+  service.deleteByPattern = async function (pattern) {
+    redisDeletePattern({ redis: redis, pattern: pattern }, function handleError (err) { });
   }
 
   return service
