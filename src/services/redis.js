@@ -46,7 +46,7 @@ module.exports = function(URL_CONECTION) {
   }
 
   service.deleteByKey = async function (key) {
-    redis.delete(key)
+    redis.del(key)
   }
 
   // Clear All Keys
