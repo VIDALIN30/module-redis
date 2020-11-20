@@ -2,7 +2,6 @@
 
 module.exports = function(URL_CONECTION) {
   const Redis = require("async-redis")
-  var redisDeletePattern = require('redis-delete-pattern');
   const redis = Redis.createClient(URL_CONECTION)
   
   let service = {}
@@ -56,6 +55,6 @@ module.exports = function(URL_CONECTION) {
   service.clearAll = async function () {
     await redis.flushall();
   }
-  
+
   return service
 }

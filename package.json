@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
-    "async-redis": "^1.1.7",
-    "redis-delete-pattern": "^0.1.0"
+    "async-redis": "^1.1.7"
   },
   "author": "Carlos Morales",
   "license": "MIT"
