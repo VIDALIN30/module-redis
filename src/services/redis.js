@@ -42,19 +42,20 @@ module.exports = function(URL_CONECTION) {
   }
 
   service.deleteByPattern = async function (pattern) {
-    redisDeletePattern({ redis: redis, pattern: pattern }, function handleError (err) { });
+    const  keys = await redis.keys (pattern)
+    keys.forEach(key => {
+      redis.del(key)
+    })
   }
 
   service.deleteByKey = async function (key) {
-    redis.del(key)
+    return await redis.del(key)
   }
 
   // Clear All Keys
   service.clearAll = async function () {
-    redis.flushall('ASYNC', x=>{
-      
-    });
+    await redis.flushall();
   }
-
+  
   return service
 }
