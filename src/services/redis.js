@@ -51,7 +51,9 @@ module.exports = function(URL_CONECTION) {
 
   // Clear All Keys
   service.clearAll = async function () {
-    redis.flushall('ASYNC', callback);
+    redis.flushall('ASYNC', x=>{
+      
+    });
   }
 
   return service
