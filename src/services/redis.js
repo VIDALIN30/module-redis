@@ -45,6 +45,7 @@ module.exports = function(URL_CONECTION) {
     keys.forEach(key => {
       redis.del(key)
     })
+    return keys
   }
 
   service.deleteByKey = async function (key) {
@@ -53,7 +54,7 @@ module.exports = function(URL_CONECTION) {
 
   // Clear All Keys
   service.clearAll = async function () {
-    await redis.flushall();
+    return await redis.flushall();
   }
 
   return service
