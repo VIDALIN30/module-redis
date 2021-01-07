@@ -2,11 +2,11 @@
 
 module.exports = function (URL_CONECTION) {
   const Redis = require("async-redis")
-  const redis = Redis.createClient(URL_CONECTION).on('error', function (err) {
-    console.log(URL_CONECTION + " " + err);
-  }).on('connect', function () {
-    console.log('Redis connected ' + URL_CONECTION);
-  })
+  const redis = Redis.createClient(URL_CONECTION)
+  .on("error", function(err) {
+      console.log("Error connecting to redis", err);
+  });
+  
   let service = {}
 
   service.set = function (clave, value) {
