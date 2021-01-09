@@ -2,7 +2,7 @@
 
 module.exports = function (URL_CONECTION) {
   const Redis = require("async-redis")
-  const redis = Redis.createClient(URL_CONECTION,{ retry_strategy: () => 30000 })
+  const redis = Redis.createClient(URL_CONECTION)
   redis.on('error', function (err) {
     console.log(URL_CONECTION + " " + err);
   })
