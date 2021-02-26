@@ -68,30 +68,20 @@ module.exports = function (URL_CONECTION) {
   }
 
   service.deleteByPattern = async function (pattern) {
-    if (redis.connected) {
-      const keys = await redis.keys(pattern)
-      keys.forEach(key => {
-        redis.del(key)
-      })
-      return keys
-    } else
-      return false
-  }
+    const keys = await redis.keys(pattern)
+    for(const key of keys){
+      await redis.del(key)
+    }
+    return keys
+}
 
   service.deleteByKey = async function (key) {
-    if (redis.connected)
       return await redis.del(key)
-    else
-      return false
   }
 
   // Clear All Keys
   service.clearAll = async function () {
-    if (redis.connected) {
       return await redis.flushall();
-    }
-    else
-      return false
   }
 
   return service
